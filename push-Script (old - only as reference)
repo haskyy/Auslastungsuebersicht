@@ -1,0 +1,11 @@
+Set objExcel = CreateObject("Excel.Application")
+Set objWorkbook = objExcel.Workbooks.Open("C:\Users\nhauska\Desktop\sheet1.xlsm")
+
+objExcel.Application.Visible = True
+
+objExcel.Application.Run "sheet1.xlsm!DieseArbeitsmappe.FreiGebuchtAugabe"
+
+thisFileName =Left(objWorkbook.FullName , InStrRev(objWorkbook.FullName , ".") - 1)
+
+objWorkbook.Sheets("Auslastungsuebersicht").Select
+objWorkbook.ActiveSheet.ExportAsFixedFormat 0, thisFileName & ".pdf", 0, 1, 0,,,0
